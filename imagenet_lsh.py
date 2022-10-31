@@ -376,9 +376,8 @@ def main_worker(gpu, ngpus_per_node, args, tb_logger, LOG):
     model_s.load_state_dict(avg_state_dict)
     test_acc, tect_acc_top5, test_loss = validate(val_loader, model_s, criterion, args)
     test_acc_test_set, tect_acc_top5_test_set , test_loss_test_set=test(test_loader,model_s, criterion, args)
-    print("{},{},{}".format(epoch, top1=test_acc_test_set, top5=tect_acc_top5_test_set)
-    LOG.info(' * Avg 10 Acc@1 {top1:.3f} Acc@5 {top5:.3f}'
-          .format(top1=test_acc, top5=tect_acc_top5))
+    print("{},{},{}".format(epoch, top1=test_acc_test_set, top5=tect_acc_top5_test_set))
+    LOG.info(' * Avg 10 Acc@1 {top1:.3f} Acc@5 {top5:.3f}'.format(top1=test_acc, top5=tect_acc_top5))
     LOG.info(' * test set Avg 10 Acc@1  {top1:.3f} Acc@5 {top5:.3f}'
           .format(top1=test_acc_test_set, top5=tect_acc_top5_test_set))
     save_file = os.path.join(args.log_folder, 'ckpt_epoch_avg10.pth')
